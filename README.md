@@ -4,8 +4,8 @@ backtracking.py --> Algorisme en backtracking.\
 dynamic.py --> Algorisme en programació dinàmica.
 
 # ÚS
-Possibilitat d'executar el codi mitjançant bash script: ./aqueducte.sh < arxiu >\
-I mitjançant codi python v.3: python3 aqueducte.py < arxiu >
+Possibilitat d'executar el codi mitjançant bash script: ./dynamic.sh < arxiu >\
+I mitjançant codi python v.3: python3 dynamic.py < arxiu >
 
 
 # CODI
