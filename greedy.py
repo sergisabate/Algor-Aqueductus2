@@ -49,7 +49,7 @@ def sum_values(result, height, width):
     return result
 
 
-def optimum_aqueduct(ground):
+def aqueduct(ground):
     solution = greedy(ground, [0, 0, 0])
     if not solution:
         impossible()
@@ -85,4 +85,4 @@ def greedy(points_greed, result):
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
-    print(cost(optimum_aqueduct(points)))
+    print(cost(aqueduct(points)))

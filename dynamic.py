@@ -4,7 +4,7 @@ import threading
 
 
 def readfile():
-    filename = "secret-04.in"
+    filename = "secret-03.in"
     variables = []
     for line in open(filename):
         variables.append([int(i) for i in line.strip().split(' ')])
@@ -17,8 +17,8 @@ def readfile():
     return variables[0]
 
 
-def cost(height, x):
-    return alpha * height + beta * x
+def cost(data):
+    return alpha * data[0] + beta * data[1]
 
 
 def impossible():
@@ -58,29 +58,32 @@ def optimum_aqueduct(ground):
 
 
 def dynamic(points_dyn, result):
-    for i in list(range(1, len(points_dyn)-1)):
+    if len(points_dyn) == 1:
+        return cost([10000, 10000])
+    for i in list(range(1, len(points_dyn))):
         now = points_dyn[0]
         after = points_dyn[1]
+        after_pos = 1
         dist_x = after[0] - now[0]
         if possible([now, after], dist_x):
             if len(points_dyn) == 2:
-                return sum_values(result, h * 2 - now[1] - after[1], dist_x ** 2)
+                return cost(sum_values(result, h * 2 - now[1] - after[1], dist_x ** 2))
             else:
                 result = sum_values(result, h - now[1], dist_x ** 2)
         else:
+            if len(points_dyn) == 2:
+                impossible()
             for j in list(range(2, len(points_dyn))):
-                points_dyn = points_dyn[j:]
-                after = points_dyn[0]
+                after = points_dyn[j]
+                after_pos = j
                 dist_x = after[0] - now[0]
                 if possible([now, after], dist_x):
                     break
             result = sum_values(result, h - now[1], dist_x ** 2)
-        return min(dynamic(points_dyn[i:], result), dynamic([points_dyn[0], points_dyn[-1]], result))
-    return cost(result[0], result[1])
+        return min((dynamic(points_dyn[after_pos:], result), dynamic(points_dyn[i:], result)))
+    return result
 
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
-    limit = len(points) * len(points)
-    sys.setrecursionlimit(limit)
     print(optimum_aqueduct(points))
