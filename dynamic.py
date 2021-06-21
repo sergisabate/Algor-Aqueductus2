@@ -26,24 +26,6 @@ def impossible():
     exit()
 
 
-def permutation(lst, points_perm):
-    if len(lst) == 0:
-        return []
-    if len(lst) == 2:
-        return [lst]
-    l = []
-    for i in range(len(lst)):
-        m = lst[i]
-        remLst = lst[:i] + lst[i + 1:]
-        s = permutation(remLst, points_perm)
-        for p in s:
-            if m < p[0] and p.count(points_perm[-1]):
-                l.append([m] + p)
-            if not l.count(p) and p.count(points_perm[0]) and p.count(points_perm[-1]):
-                l.append(p)
-    return l
-
-
 def possible(points_pos, dist_x):
     radius = dist_x / 2
     span_point = [radius + points_pos[0][0], h - radius]
@@ -99,5 +81,6 @@ def dynamic(points_dyn, result):
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
-    sys.setrecursionlimit(100000)
+    limit = len(points) * len(points)
+    sys.setrecursionlimit(limit)
     print(optimum_aqueduct(points))

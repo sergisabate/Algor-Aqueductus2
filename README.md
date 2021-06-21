@@ -1,5 +1,6 @@
 # FUNCIONALITAT
 Aquest codi consisteix en mitjançant l'introducció d'un arxiu en .in, aquest comprovarà la possibilitat de generar un aqüeducte entre els punts cardinals de l'arxiu i calcularà un cost òptim mitjançant la eqüació de la pràctica.\
+greedy.py --> Algorisme en greedy.\
 backtracking.py --> Algorisme en backtracking.\
 dynamic.py --> Algorisme en programació dinàmica.
 
