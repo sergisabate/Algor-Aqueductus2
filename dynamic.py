@@ -1,10 +1,8 @@
-import math
 import sys
-import threading
-
+import math
 
 def readfile():
-    filename = "secret-03.in"
+    filename = sys.argv[1]
     variables = []
     for line in open(filename):
         variables.append([int(i) for i in line.strip().split(' ')])
