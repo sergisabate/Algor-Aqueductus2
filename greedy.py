@@ -85,4 +85,5 @@ def greedy(points_greed, result):
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
+    sys.setrecursionlimit(sys.getrecursionlimit() + len(points))
     print(cost(aqueduct(points)))

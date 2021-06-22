@@ -68,6 +68,7 @@ def dynamic(points_dyn, result):
                 return cost(sum_values(result, h * 2 - now[1] - after[1], dist_x ** 2))
             else:
                 result = sum_values(result, h - now[1], dist_x ** 2)
+            return min((dynamic(points_dyn[after_pos:], result), dynamic(points_dyn[i:], result)))
         else:
             if len(points_dyn) == 2:
                 impossible()
@@ -78,10 +79,10 @@ def dynamic(points_dyn, result):
                 if possible([now, after], dist_x):
                     break
             result = sum_values(result, h - now[1], dist_x ** 2)
-        return min((dynamic(points_dyn[after_pos:], result), dynamic(points_dyn[i:], result)))
-    return result
+    return cost(result)
 
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
+    sys.setrecursionlimit(sys.getrecursionlimit() + len(points))
     print(optimum_aqueduct(points))

@@ -5,4 +5,4 @@ if [ "$#" -ne 1 ]; then
     exit
 fi
 
-python3 greedy.py $1
+python3.8 greedy.py $1

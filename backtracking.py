@@ -102,6 +102,5 @@ def backtracking(points_back, comb, result):
 
 if __name__ == "__main__":
     n, h, alpha, beta, points = readfile()
-    limit = len(points)*len(points)
-    sys.setrecursionlimit(limit)
+    sys.setrecursionlimit(sys.getrecursionlimit() + len(points))
     print(optimum_aqueduct(points))
